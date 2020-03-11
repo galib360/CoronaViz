@@ -136,17 +136,17 @@ MRT	Mauritania	3205060	0	0	0
 MNG	Mongolia	3086918	1	0	0
 OMN	Oman	2967717	18	0	9
 ARM	Armenia	2966802	1	0	0
-JAM	Jamaica	2847232	1	0	0
-KWT	Kuwait	2789132	69	0	1
-PSE	Palestine	2514845	29	0	0
-LVA	Latvia	2217969	8	0	1
-NAM	Namibia	2128471	0	0	0
-MKD	Macedonia	2072086	7	0	0
+JAM	Jamaica	2847232	1	0	0   
+OSA	Kosovo	2789132  0  0   0 
+PSE	Palestine	2514845	29	0	0    
+LVA	Latvia	2217969	8	0	1    
+NAM	Namibia	2128471	0	0	0   
+MKD	Macedonia	2072086	7	0	0 
 BWA	Botswana	2029307	0	0	0
 SVN	Slovenia	2003136	34	0	0
 LSO	Lesotho	1919552	0	0	0
 GMB	Gambia, The	1824158	0	0	0
-KWT	Kosovo	1815048	0	0	0
+KWT	Kuwait	1815048	72	0	1
 149	Gaza Strip	1604238	0	0	0
 GNB	Guinea-Bissau	1565126	0	0	0
 GAB	Gabon	1545255	0	0	0
@@ -240,4 +240,3 @@ ATA	Antarctica	0	0	0	0
 ATF	French Southern and Antarctic Lands	0	0	0	0
 SDS	South Sudan	12152321	0	0	0
 ABV	Somaliland	3500000	0	0	0
-OSA	Kosovo	1824000	0	0	0
