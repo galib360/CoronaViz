@@ -2,6 +2,7 @@
 <html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>CoronaViz</title>
 <style>
 
   .names {
@@ -115,129 +116,39 @@
     
 table, th, td {
   border: 1px solid black;
+  text-align: center;
 }
+th, td {
+  padding: 5px;
+}
+    
+.row.equal {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
 </style>
+    
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>    
+
 <body>
     
-<h2 align="center">CORONA Virus World Map Visualization</h2>
-    <p align="center"><a href="https://www.worldometers.info/coronavirus/">Data Source</a> (data until 10th March, 2020)</p>
+<div class="text-center" style="background-color:#deebf7;">
+  <h2>CORONA Virus World Map Visualization</h2>
+  <p><a href="https://www.worldometers.info/coronavirus/">Data Source</a> (data until 10th March, 2020)</p> 
+</div>
+    
+    
+    
+<div class="container-fluid">
+  <div class="row equal">
+    <div class="col-sm-8" style="background-color:#6baed6;">
     
     <div class="legend"> <p class="country-name"><span class="key-dot queens"></span>Not Affected</p> </div>
     <div class="legend"> <p class="country-name"><span class="key-dot kings"></span>Least Affected</p> </div>
     <div class="legend"> <p class="country-name"><span class="key-dot bronx"></span>Most Affected</p> </div>
-    
-    
-    
- <div class="sumbox">
-  
-<h3>World Wide Summary</h3>
-     
-<table>
-  <tr>
-    <th>Total Cases</th>
-    <th>Deaths</th> 
-    <th>Recovered</th>
-  </tr>
-  <tr>
-    <td>119243</td>
-    <td>4300</td> 
-    <td>66578</td>
-  </tr>
-</table>
-     
-<h3>Countries With Most Cases</h3>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Confirmed Cases</th> 
-    <th>Deaths</th>
-    <th>Recovered</th>
-  </tr>
-  <tr>
-    <td>China</td>
-    <td>696</td> 
-    <td>7</td>
-    <td>325</td>
-  </tr>
-  <tr>
-    <td>Italy</td>
-    <td>3</td> 
-    <td>0</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td>Iran</td>
-    <td>2</td> 
-    <td>0</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td>South Korea</td>
-    <td>2</td> 
-    <td>0</td>
-    <td>0</td>
-  </tr>
-</table>
-     
-<h3>Other Confirmed Cases Not Found On Map </h3>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Confirmed Cases</th> 
-    <th>Deaths</th>
-    <th>Recovered</th>
-  </tr>
-  <tr>
-    <td>Diamond Princess</td>
-    <td>696</td> 
-    <td>7</td>
-    <td>325</td>
-  </tr>
-  <tr>
-    <td>Martinique</td>
-    <td>3</td> 
-    <td>0</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td>Channel Islands</td>
-    <td>2</td> 
-    <td>0</td>
-    <td>0</td>
-  </tr>
-</table>
-     
-<h3>Countries Fully Recovered From Corona</h3>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Confirmed Cases</th> 
-    <th>Recovered</th>
-    <th>Fully recovered</th>  
-  </tr>
-  <tr>
-    <td>Macau</td>
-    <td>10</td> 
-    <td>10</td>
-    <td><div class="legend"> <p class="country-name"><span class="key-dot queens"></span></p> </div></td>
-  </tr>
-  <tr>
-    <td>Nepal</td>
-    <td>1</td> 
-    <td>1</td>
-    <td><div class="legend"> <p class="country-name"><span class="key-dot queens"></span></p> </div></td>
-  </tr>
-  <tr>
-    <td>Gibraltar</td>
-    <td>1</td> 
-    <td>1</td>
-    <td><div class="legend"> <p class="country-name"><span class="key-dot queens"></span></p> </div></td>
-  </tr>
-</table>
-</div> 
     
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/queue.v1.min.js"></script>
@@ -259,7 +170,7 @@ var tip = d3.tip()
               return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Confirmed Cases: </strong><span class='details'>" + format(d.confirmed) + "<br></span>" + "<strong>Deaths: </strong><span class='details'>" + format(d.deaths) + "<br></span>" + "<strong>Recovered: </strong><span class='details'>" + format(d.recovered) +"</span>";
             })
 
-var margin = {top: 200, right: 0, bottom: 0, left: 150},
+var margin = {top: 200, right: 0, bottom: 0, left: 200},
             width = 1200 - margin.left - margin.right,
             height = 900 - margin.top - margin.bottom;
 
@@ -273,7 +184,7 @@ var colorCorona = d3.scaleThreshold()
 
 var path = d3.geoPath();
 
-var svg = d3.select("body")
+var svg = d3.select(".col-sm-8")
             .append("svg")
             .attr("width", width)
             .attr("height", height)
@@ -355,5 +266,120 @@ function ready(error, data, combined) {
 }
 
 </script>
+        
+</div>
+    
+<div class="col-sm-4" style="background-color:#4292c6;">
+<h3>World Wide Summary</h3>
+     
+<table>
+  <tr>
+    <th> Total Cases </th>
+    <th> Deaths </th> 
+    <th> Recovered </th>
+  </tr>
+  <tr>
+    <td>119243</td>
+    <td>4300</td> 
+    <td>66578</td>
+  </tr>
+</table>
+     
+<h3>Countries With Most Cases</h3>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Confirmed Cases</th> 
+    <th>Deaths</th>
+    <th>Recovered</th>
+  </tr>
+  <tr>
+    <td>China</td>
+    <td>80783</td> 
+    <td>3158</td>
+    <td>61499</td>
+  </tr>
+  <tr>
+    <td>Italy</td>
+    <td>10149</td> 
+    <td>631</td>
+    <td>1004</td>
+  </tr>
+  <tr>
+    <td>Iran</td>
+    <td>8042</td> 
+    <td>291</td>
+    <td>2731</td>
+  </tr>
+  <tr>
+    <td>South Korea</td>
+    <td>7755</td> 
+    <td>61</td>
+    <td>288</td>
+  </tr>
+</table>
+     
+<h3>Other Confirmed Cases Not Found On Map </h3>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Confirmed Cases</th> 
+    <th>Deaths</th>
+    <th>Recovered</th>
+  </tr>
+  <tr>
+    <td>Diamond Princess</td>
+    <td>696</td> 
+    <td>7</td>
+    <td>325</td>
+  </tr>
+  <tr>
+    <td>Martinique</td>
+    <td>3</td> 
+    <td>0</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Channel Islands</td>
+    <td>2</td> 
+    <td>0</td>
+    <td>0</td>
+  </tr>
+</table>
+     
+<h3>Countries Fully Recovered From Corona</h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Confirmed Cases</th> 
+    <th>Recovered</th>
+    <th>Fully recovered</th>  
+  </tr>
+  <tr>
+    <td>Macau</td>
+    <td>10</td> 
+    <td>10</td>
+    <td><div class="legend"> <p class="country-name"><span class="key-dot queens"></span></p> </div></td>
+  </tr>
+  <tr>
+    <td>Nepal</td>
+    <td>1</td> 
+    <td>1</td>
+    <td><div class="legend"> <p class="country-name"><span class="key-dot queens"></span></p> </div></td>
+  </tr>
+  <tr>
+    <td>Gibraltar</td>
+    <td>1</td> 
+    <td>1</td>
+    <td><div class="legend"> <p class="country-name"><span class="key-dot queens"></span></p> </div></td>
+  </tr>
+</table>
+        
+    </div>
+  </div>
+</div>
+    
 </body>
 </html>
