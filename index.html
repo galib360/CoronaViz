@@ -111,8 +111,10 @@
 
 .queens { background: green;}
 .kings { background: #ffffcc;}
-.bronx { background: #800026;
-}
+.bronx { background: #800026;}
+.confirmed { background: #feb24c;}
+.death { background: #f03b20;}
+.recovered { background: #addd8e;}
     
 table, th, td {
   border: 1px solid black;
@@ -126,6 +128,62 @@ th, td {
     display: flex;
     flex-wrap: wrap;
   }
+    
+.axis {
+	font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #D4D8DA;
+  stroke-width: 2px;
+  shape-rendering: crispEdges;
+}
+
+.lineC {
+  fill: none;
+  stroke: #feb24c;
+  stroke-width: 5px;
+}
+
+.lineD {
+  fill: none;
+  stroke: #f03b20;
+  stroke-width: 5px;
+}
+.lineR {
+  fill: none;
+  stroke: #addd8e;
+  stroke-width: 5px;
+}
+    
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: #F1F3F3;
+  stroke: #feb24c;
+  stroke-width: 5px;
+}
+.focus2 circle {
+  fill: #F1F3F3;
+  stroke: #f03b20;
+  stroke-width: 5px;
+}
+.focus3 circle {
+  fill: #F1F3F3;
+  stroke: #addd8e;
+  stroke-width: 5px;
+}
+  
+.hover-line {
+  stroke: #6F257F;
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
+}
 
 </style>
     
@@ -144,7 +202,7 @@ th, td {
     
 <div class="container-fluid">
   <div class="row equal">
-    <div class="col-sm-8" style="background-color:#6baed6;">
+    <div id="choroDiv" class="col-sm-8" style="background-color:#6baed6;">
     
     <div class="legend"> <p class="country-name"><span class="key-dot queens"></span>Not Affected</p> </div>
     <div class="legend"> <p class="country-name"><span class="key-dot kings"></span>Least Affected</p> </div>
@@ -159,7 +217,7 @@ var format = d3.format(",");
 var totalDeath = 0;
 var totalCase = 0;
 var totalRecovered = 0;
-var date = document.lastModified; 
+var lastModDate = document.lastModified; 
 
 
 // Set tooltips
@@ -184,7 +242,7 @@ var colorCorona = d3.scaleThreshold()
 
 var path = d3.geoPath();
 
-var svg = d3.select(".col-sm-8")
+var svg = d3.select("#choroDiv")
             .append("svg")
             .attr("width", width)
             .attr("height", height)
@@ -379,6 +437,204 @@ function ready(error, data, combined) {
         
     </div>
   </div>
+
+
+<div class="row equal">
+    
+    <div id ="lineDiv" class="col-sm-6" style="background-color:#deebf7;">
+        
+<svg id="lineSVG" width="720" height="500">
+    <div class="legend"> <p class="country-name"><span class="key-dot confirmed"></span>Confirmed Cases</p> </div>
+    <div class="legend"> <p class="country-name"><span class="key-dot death"></span>Death Cases</p> </div>
+    <div class="legend"> <p class="country-name"><span class="key-dot recovered"></span>Recovered Cases</p> </div>        
+</svg>
+<script>
+var svg2 = d3.select("#lineSVG"),
+    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = +svg2.attr("width") - margin.left - margin.right,
+    height = +svg2.attr("height") - margin.top - margin.bottom;
+
+var parseTime = d3.timeParse("%Y")
+    bisectDate = d3.bisector(function(d) { return d.day; }).left;
+
+var x = d3.scaleTime().range([0, width]);
+var y = d3.scaleLinear().range([height, 0]);
+
+var lineC = d3.line()
+    .x(function(d) { return x(d.index); })
+    .y(function(d) { return y(d.confirmedFreq); });
+    
+var lineD = d3.line()
+    .x(function(d) { return x(d.index); })
+    .y(function(d) { return y(d.deathFreq); });
+    
+var lineR = d3.line()
+    .x(function(d) { return x(d.index); })
+    .y(function(d) { return y(d.recoveredFreq); });
+
+var g = svg2.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.json("data/TotalTimeSeries.json", function(error, data) {
+    if (error) throw error;
+
+    data.forEach(function(d) {
+      d.day = d.index;
+      d.date = d.date;
+      d.confirmedFreq = +d.confirmedFreq;
+      d.deathFreq = +d.deathFreq;
+      d.recoveredFreq = +d.recoveredFreq;
+    });
+
+//    x.domain(d3.extent(data, function(d) { return d.day; }));
+    x.domain([d3.min(data, function(d) { return d.day; }) / 1.2, d3.max(data, function(d) { return d.day; }) * 1.2]);
+    y.domain([d3.min(data, function(d) { return d.confirmedFreq; }) / 1.1, d3.max(data, function(d) { return d.confirmedFreq; }) * 1.1]);
+
+    g.append("g")
+        .attr("class", "axis axis--x")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x).ticks(6).tickFormat(d3.format(".0f")))
+    .append("text")
+        .attr("class", "axis-title")
+//        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("x", width)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .attr("fill", "#5D6971")
+        .text("Days");
+
+    g.append("g")
+        .attr("class", "axis axis--y")
+        .call(d3.axisLeft(y).ticks(6).tickFormat(function(d) { return parseInt(d / 1000) + "k"; }))
+      .append("text")
+        .attr("class", "axis-title")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .attr("fill", "#5D6971")
+        .text("No. of cases");
+
+    g.append("path")
+        .datum(data)
+        .attr("class", "lineC")
+        .attr("d", lineC);
+    g.append("path")
+        .datum(data)
+        .attr("class", "lineD")
+        .attr("d", lineD);
+    g.append("path")
+        .datum(data)
+        .attr("class", "lineR")
+        .attr("d", lineR);
+
+    var focus = g.append("g")
+        .attr("class", "focus")
+        .style("display", "none");
+
+    focus.append("line")
+        .attr("class", "x-hover-line hover-line")
+        .attr("y1", 0)
+        .attr("y2", height);
+
+    focus.append("line")
+        .attr("class", "y-hover-line hover-line")
+        .attr("x1", width)
+        .attr("x2", width);
+
+    focus.append("circle")
+        .attr("r", 7.5);
+
+    focus.append("text")
+        .attr("x", 5)
+        .attr("y", -15)
+      	.attr("dy", ".31em");
+    
+    var focus2 = g.append("g")
+        .attr("class", "focus2")
+        .style("display", "none");
+
+    focus2.append("line")
+        .attr("class", "x-hover-line hover-line")
+        .attr("y1", 0)
+        .attr("y2", height);
+
+    focus2.append("line")
+        .attr("class", "y-hover-line hover-line")
+        .attr("x1", width)
+        .attr("x2", width);
+
+    focus2.append("circle")
+        .attr("r", 7.5);
+
+    focus2.append("text")
+        .attr("x", 5)
+        .attr("y", -15)
+      	.attr("dy", ".31em");
+    
+    var focus3 = g.append("g")
+        .attr("class", "focus3")
+        .style("display", "none");
+
+    focus3.append("line")
+        .attr("class", "x-hover-line hover-line")
+        .attr("y1", 0)
+        .attr("y2", height);
+
+    focus3.append("line")
+        .attr("class", "y-hover-line hover-line")
+        .attr("x1", width)
+        .attr("x2", width);
+
+    focus3.append("circle")
+        .attr("r", 7.5);
+
+    focus3.append("text")
+        .attr("x", 5)
+        .attr("y", -15)
+      	.attr("dy", ".31em");
+
+    svg2.append("rect")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .attr("class", "overlay")
+        .attr("width", width)
+        .attr("height", height)
+        .on("mouseover", function() { focus.style("display", null); focus2.style("display", null); focus3.style("display", null); })
+        .on("mouseout", function() { focus.style("display", "none"); focus2.style("display", "none"); focus3.style("display", "none");})
+        .on("mousemove", mousemove);
+
+    function mousemove() {
+      var x0 = x.invert(d3.mouse(this)[0]),
+          i = bisectDate(data, x0, 1),
+          d0 = data[i - 1],
+          d1 = data[i],
+          d = x0 - d0.day > d1.day - x0 ? d1 : d0;
+      focus.attr("transform", "translate(" + x(d.day) + "," + y(d.confirmedFreq) + ")");
+      focus.select("text").text(function() { return d.confirmedFreq + " (on " + d.date+")"; });
+      focus2.attr("transform", "translate(" + x(d.day) + "," + y(d.deathFreq) + ")");
+      focus2.select("text").text(function() { return d.deathFreq; });
+      focus3.attr("transform", "translate(" + x(d.day) + "," + y(d.recoveredFreq) + ")");
+      focus3.select("text").text(function() { return d.recoveredFreq; });
+      
+      focus.select(".x-hover-line").attr("y2", height - y(d.confirmedFreq));
+      focus.select(".y-hover-line").attr("x2", width + width);
+      focus2.select(".x-hover-line").attr("y2", height - y(d.deathFreq));
+      focus2.select(".y-hover-line").attr("x2", width + width);
+      focus3.select(".x-hover-line").attr("y2", height - y(d.recoveredFreq));
+      focus3.select(".y-hover-line").attr("x2", width + width);
+    }
+});
+
+</script>
+
+
+    
+        
+    </div>
+        
+</div>
+    
 </div>
     
 </body>

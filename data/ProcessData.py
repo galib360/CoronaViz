@@ -1,3 +1,4 @@
+#Final
 import pandas as pd
 confirmedData = pd.read_csv("time_series_19-covid-Confirmed.csv") 
 deathData = pd.read_csv("time_series_19-covid-Deaths.csv")
@@ -32,4 +33,6 @@ RecoveredTimeSeries = tempDF
 
 TotalTimeSeries = ConfirmedTimeSeries.join(DeathTimeSeries.set_index('date'), on='date')
 TotalTimeSeries = TotalTimeSeries.join(RecoveredTimeSeries.set_index('date'), on='date')
-TotalTimeSeries.to_csv('TotalTimeSeries.csv', index = False, header=True)
+TotalTimeSeries.reset_index(level=0, inplace=True)
+TotalTimeSeries.to_csv('TotalTimeSeries.csv', index = True, header=True)
+TotalTimeSeries.to_json('TotalTimeSeries.json', orient="records", index = True)
