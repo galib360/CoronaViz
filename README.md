@@ -1,5 +1,6 @@
 # CoronaViz
 World Choropleth Visualization of Corona Virus Outbreak in 2020
+Visit: https://galib360.github.io/CoronaViz/
 
 References:
 
