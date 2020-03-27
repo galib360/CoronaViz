@@ -43,13 +43,14 @@ MostCases = coronaData.sort_values('Confirmed', ascending=False).head(10)
 
 MostCases.drop('Population', axis=1, inplace=True)
 MostCases.drop('id', axis=1, inplace=True)
+MostCases = MostCases.astype({"Confirmed": int, "Death": int, "Recovered" : int})
 MostCases.to_csv('MostCases.csv', index=False, header=True)
 
 #Summary Table
-TotalConfirmed = coronaData['Confirmed'].sum()
-TotalDeath = coronaData['Death'].sum()
-TotalRecovered = coronaData['Recovered'].sum()
+TotalConfirmed = Final['Confirmed'].sum()
+TotalDeath = Final['Death'].sum()
+TotalRecovered = Final['Recovered'].sum()
 
 d = {'Confirmed': [TotalConfirmed], 'Death': [TotalDeath], 'Recovered' : [TotalRecovered]}
-Summary = pd.DataFrame(data=d, dtype=np.int8)
+Summary = pd.DataFrame(data=d)
 Summary.to_csv('Summary.csv', index=False, header=True)

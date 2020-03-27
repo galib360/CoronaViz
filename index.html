@@ -119,12 +119,18 @@
 table {
     border-collapse: collapse;
     border: 2px black solid;
-    font: 12px sans-serif;
+    font: 14px sans-serif;
 }
 
-td,th {
+th {
     border: 1px black solid;
     padding: 5px;
+    text-align: center;
+}
+td {
+    border: 1px black solid;
+    padding: 5px;
+    text-align: center;
 }
     
 .row.equal {
@@ -198,7 +204,7 @@ td,th {
     
 <div class="text-center" style="background-color:#deebf7;">
   <h2>CORONA Virus World Map Visualization</h2>
-  <p><a href="https://www.worldometers.info/coronavirus/">Data Source</a> (data until 10th March, 2020)</p> 
+  <p><a href="https://github.com/CSSEGISandData/COVID-19">Data Source</a> (data until 26th March, 2020)</p> 
 </div>
     
 <hr>  
@@ -240,7 +246,7 @@ var color = d3.scaleThreshold()
     .range(["rgb(247,251,255)", "rgb(222,235,247)", "rgb(198,219,239)", "rgb(158,202,225)", "rgb(107,174,214)", "rgb(66,146,198)","rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"]);
 	
 var colorCorona = d3.scaleThreshold()
-    .domain([1, 10, 30, 100, 500, 1000, 2000, 8000, 20000, 100000])
+    .domain([1, 10, 100, 1000, 5000, 10000, 20000, 60000, 80000, 100000])
     .range(["green", "#ffffcc", "#ffeda0", "#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#bd0026", "#800026" ]);
 
 var path = d3.geoPath();
@@ -531,6 +537,9 @@ d3.json("data/TotalTimeSeries.json", function(error, data) {
     
 <div id = "SummaryDiv" class="col-sm-4" style="background-color:#6baed6;">
 <h3>World Wide Summary</h3>
+    <p>* Diamond Princess: Confirmed - 712; Death - 10; Recovered: 597</p>
+    <p>* Some small countries showing green on the map do not have any data </p>
+    <p>* For instance, there is no data on North Korea</p>
     
  <script type="text/javascript"charset="utf-8">
     
