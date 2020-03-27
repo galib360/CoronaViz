@@ -116,12 +116,15 @@
 .death { background: #f03b20;}
 .recovered { background: #addd8e;}
     
-table, th, td {
-  border: 1px solid black;
-  text-align: center;
+table {
+    border-collapse: collapse;
+    border: 2px black solid;
+    font: 12px sans-serif;
 }
-th, td {
-  padding: 5px;
+
+td,th {
+    border: 1px black solid;
+    padding: 5px;
 }
     
 .row.equal {
@@ -225,7 +228,7 @@ var tip = d3.tip()
             .attr('class', 'd3-tip')
             .offset([-10, 0])
             .html(function(d) {
-              return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Confirmed Cases: </strong><span class='details'>" + format(d.confirmed) + "<br></span>" + "<strong>Deaths: </strong><span class='details'>" + format(d.deaths) + "<br></span>" + "<strong>Recovered: </strong><span class='details'>" + format(d.recovered) +"</span>";
+              return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Confirmed Cases: </strong><span class='details'>" + format(d.Confirmed) + "<br></span>" + "<strong>Deaths: </strong><span class='details'>" + format(d.Death) + "<br></span>" + "<strong>Recovered: </strong><span class='details'>" + format(d.Recovered)+ "<br></span>" + "<strong>Death Rate: </strong><span class='details'>" + ((d.Death/d.Confirmed)*100).toFixed(2) + " %"  +"</span>";
             })
 
 var margin = {top: 200, right: 0, bottom: 0, left: 200},
@@ -259,7 +262,7 @@ svg.call(tip);
 
 queue()
     .defer(d3.json, "world_countries.json")
-    .defer(d3.tsv, "corona_data.tsv")
+    .defer(d3.csv, "data/Corona_Final.csv")
     .await(ready);
 
 function ready(error, data, combined) {
@@ -269,11 +272,11 @@ function ready(error, data, combined) {
   
   //Corona -> add DiamondPrincess, Martinique, channel island  to others
   var confirmedById = {};
-  var deathsById = {};
+  var deathById = {};
   var recoveredById = {};
   
-  combined.forEach(function(d) { confirmedById[d.id] = +d.confirmed; deathsById[d.id] = +d.deaths; recoveredById[d.id] = +d.recovered });
-  data.features.forEach(function(d) { d.confirmed = confirmedById[d.id]; d.deaths = deathsById[d.id]; d.recovered = recoveredById[d.id] });
+  combined.forEach(function(d) { confirmedById[d.id] = +d.Confirmed; deathById[d.id] = +d.Death; recoveredById[d.id] = +d.Recovered });
+  data.features.forEach(function(d) { d.Confirmed = confirmedById[d.id]; d.Death = deathById[d.id]; d.Recovered = recoveredById[d.id] });
   
   console.log("Cases: " + totalCase);
   console.log("Deaths: " + totalDeath);
@@ -526,115 +529,60 @@ d3.json("data/TotalTimeSeries.json", function(error, data) {
         
 </div>
     
-<div class="col-sm-4" style="background-color:#6baed6;">
+<div id = "SummaryDiv" class="col-sm-4" style="background-color:#6baed6;">
 <h3>World Wide Summary</h3>
-     
-<table>
-  <tr>
-    <th> Total Cases </th>
-    <th> Deaths </th> 
-    <th> Recovered </th>
-  </tr>
-  <tr>
-    <td>119243</td>
-    <td>4300</td> 
-    <td>66578</td>
-  </tr>
-</table>
-     
-<h3>Countries With Most Cases</h3>
+    
+ <script type="text/javascript"charset="utf-8">
+    
+     var tabulate = function (data,columns) {
+  var table = d3.select('#SummaryDiv').append('table')
+	var thead = table.append('thead')
+	var tbody = table.append('tbody')
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Confirmed Cases</th> 
-    <th>Deaths</th>
-    <th>Recovered</th>
-  </tr>
-  <tr>
-    <td>China</td>
-    <td>80783</td> 
-    <td>3158</td>
-    <td>61499</td>
-  </tr>
-  <tr>
-    <td>Italy</td>
-    <td>10149</td> 
-    <td>631</td>
-    <td>1004</td>
-  </tr>
-  <tr>
-    <td>Iran</td>
-    <td>8042</td> 
-    <td>291</td>
-    <td>2731</td>
-  </tr>
-  <tr>
-    <td>South Korea</td>
-    <td>7755</td> 
-    <td>61</td>
-    <td>288</td>
-  </tr>
-</table>
-     
-<h3>Other Confirmed Cases Not Found On Map </h3>
+	thead.append('tr')
+	  .selectAll('th')
+	    .data(columns)
+	    .enter()
+	  .append('th')
+	    .text(function (d) { return d })
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Confirmed Cases</th> 
-    <th>Deaths</th>
-    <th>Recovered</th>
-  </tr>
-  <tr>
-    <td>Diamond Princess</td>
-    <td>696</td> 
-    <td>7</td>
-    <td>325</td>
-  </tr>
-  <tr>
-    <td>Martinique</td>
-    <td>3</td> 
-    <td>0</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td>Channel Islands</td>
-    <td>2</td> 
-    <td>0</td>
-    <td>0</td>
-  </tr>
-</table>
+	var rows = tbody.selectAll('tr')
+	    .data(data)
+	    .enter()
+	  .append('tr')
+
+	var cells = rows.selectAll('td')
+	    .data(function(row) {
+	    	return columns.map(function (column) {
+	    		return { column: column, value: row[column] }
+	      })
+      })
+      .enter()
+    .append('td')
+      .text(function (d) { return d.value })
+
+  return table;
+}
      
-<h3>Countries Fully Recovered From Corona</h3>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Confirmed Cases</th> 
-    <th>Recovered</th>
-    <th>Fully recovered</th>  
-  </tr>
-  <tr>
-    <td>Macau</td>
-    <td>10</td> 
-    <td>10</td>
-    <td><div class="legend"> <p class="country-name"><span class="key-dot queens"></span></p> </div></td>
-  </tr>
-  <tr>
-    <td>Nepal</td>
-    <td>1</td> 
-    <td>1</td>
-    <td><div class="legend"> <p class="country-name"><span class="key-dot queens"></span></p> </div></td>
-  </tr>
-  <tr>
-    <td>Gibraltar</td>
-    <td>1</td> 
-    <td>1</td>
-    <td><div class="legend"> <p class="country-name"><span class="key-dot queens"></span></p> </div></td>
-  </tr>
-</table>
+
+d3.csv('data/Summary.csv',function (data) {
+	var columns = ['Confirmed','Death','Recovered']
+  tabulate(data,columns)
+})
+     
+     
+
+d3.csv('data/MostCases.csv',function (data) {
+	var columns = ['Country', 'Confirmed','Death','Recovered']
+  tabulate(data,columns)
+})
+
+document.write("<br>");
+</script> 
+    
+
         
-    </div>
+</div>
     
     
     

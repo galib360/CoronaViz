@@ -1,0 +1,242 @@
+id	Country	Population	Confirmed	Death	Recovered
+CHN	China	1330141295	80783	3158	61499
+IND	India	1173108018	62	0	4
+USA	United States	310232863	1010	31	15
+IDN	Indonesia	242968342	27	1	2
+BRA	Brazil	201103330	34	0	0
+PAK	Pakistan	177276594	19	0	2
+BGD	Bangladesh	158065841	3	0	0
+NGA	Nigeria	152217341	2	0	0
+RUS	Russia	139390205	20	0	3
+JPN	Japan	126804433	587	12	102
+MEX	Mexico	112468855	7	0	4
+PHL	Philippines	99900177	33	1	2
+VNM	Vietnam	89571130	34	0	16
+ETH	Ethiopia	88013491	0	0	0
+DEU	Germany	82282988	1565	2	18
+EGY	Egypt	80471869	59	1	26
+TUR	Turkey	77804122	1	0	0
+COD	Congo, Democratic Republic of the	70916439	1	0	0
+IRN	Iran	67037517	8042	291	2731
+THA	Thailand	66404688	59	1	34
+FRA	France	64057792	1784	33	12
+GBR	United Kingdom	61284806	383	6	18
+ITA	Italy	58090681	10149	631	1004
+MMR	Burma	53414374	0	0	0
+ZAF	South Africa	49109107	7	0	0
+KOR	Korea, South	48636068	7755	61	288
+UKR	Ukraine	45415596	1	0	0
+COL	Colombia	44205293	3	0	0
+SDN	Sudan	41980182	0	0	0
+TZA	Tanzania	41892895	0	0	0
+ARG	Argentina	41343201	19	1	0
+ESP	Spain	40548753	1695	36	135
+KEN	Kenya	40046566	0	0	0
+POL	Poland	38463689	22	0	0
+DZA	Algeria	34586184	20	0	0
+CAN	Canada	33759742	93	1	9
+UGA	Uganda	33398682	0	0	0
+MAR	Morocco	31627428	3	1	0
+PER	Peru	29907003	11	0	0
+IRQ	Iraq	29671605	71	7	15
+SAU	Saudi Arabia	29207277	20	0	1
+AFG	Afghanistan	29121286	7	0	0
+NPL	Nepal	28951852	1	0	1
+UZB	Uzbekistan	27865738	0	0	0
+VEN	Venezuela	27223228	0	0	0
+MYS	Malaysia	26160256	129	0	25
+GHA	Ghana	24339838	0	0	0
+YEM	Yemen	23495361	0	0	0
+TWN	Taiwan	23024956	48	1	17
+PRK	Korea, North	22757275	0	0	0
+SYR	Syria	22198110	0	0	0
+ROU	Romania	22181287	29	0	5
+MOZ	Mozambique	22061451	0	0	0
+AUS	Australia	21515754	123	3	24
+LKA	Sri Lanka	21513990	2	0	1
+MDG	Madagascar	21281844	0	0	0
+CIV	Cote d'Ivoire	21058798	0	0	0
+CMR	Cameroon	19294149	2	0	0
+NLD	Netherlands	16783092	382	4	0
+CHL	Chile	16746491	17	0	0
+BFA	Burkina Faso	16241811	2	0	0
+NER	Niger	15878271	0	0	0
+KAZ	Kazakhstan	15460484	0	0	0
+MWI	Malawi	15447500	0	0	0
+ECU	Ecuador	14790608	17	0	0
+KHM	Cambodia	14753320	3	0	1
+SEN	Senegal	14086103	4	0	1
+MLI	Mali	13796354	0	0	0
+GTM	Guatemala	13550440	0	0	0
+AGO	Angola	13068161	0	0	0
+ZMB	Zambia	12056923	0	0	0
+ZWE	Zimbabwe	11651858	0	0	0
+CUB	Cuba	11477459	0	0	0
+RWA	Rwanda	11055976	0	0	0
+GRC	Greece	10749943	89	0	0
+PRT	Portugal	10735765	41	0	0
+TUN	Tunisia	10589025	6	0	0
+TCD	Chad	10543464	0	0	0
+BEL	Belgium	10423493	267	0	1
+GIN	Guinea	10324025	0	0	0
+CZE	Czech Republic	10201707	63	0	0
+SOM	Somalia	10112453	0	0	0
+BOL	Bolivia	9947418	2	0	0
+HUN	Hungary	9880059	13	0	0
+BDI	Burundi	9863117	0	0	0
+DOM	Dominican Republic	9794487	5	0	0
+BLR	Belarus	9612632	9	0	3
+HTI	Haiti	9203083	0	0	0
+SWE	Sweden	9074055	355	0	1
+BEN	Benin	9056010	0	0	0
+AZE	Azerbaijan	8303512	11	0	0
+AUT	Austria	8214160	182	0	4
+HND	Honduras	7989415	0	0	0
+CHE	Switzerland	7623438	497	3	3
+TJK	Tajikistan	7487489	0	0	0
+ISR	Israel	7353985	75	0	4
+SRB	Serbia	7344847	5	0	0
+BGR	Bulgaria	7148785	6	0	0
+HKG	Hong Kong	7089705	121	3	60
+LAO	Laos	6993767	0	0	0
+LBY	Libya	6461454	0	0	0
+JOR	Jordan	6407085	1	0	0
+PRY	Paraguay	6375830	5	0	0
+TGO	Togo	6199841	1	0	0
+PNG	Papua New Guinea	6064515	0	0	0
+SLV	El Salvador	6052064	0	0	0
+NIC	Nicaragua	5995928	0	0	0
+ERI	Eritrea	5792984	0	0	0
+DNK	Denmark	5515575	262	0	1
+KGZ	Kyrgyzstan	5508626	0	0	0
+SVK	Slovakia	5470306	7	0	0
+FIN	Finland	5255068	40	0	1
+SLE	Sierra Leone	5245695	0	0	0
+ARE	United Arab Emirates	4975593	74	0	12
+TKM	Turkmenistan	4940916	0	0	0
+CAF	Central African Republic	4844927	0	0	0
+SGP	Singapore	4701069	166	0	93
+NOR	Norway	4676305	400	0	1
+BIH	Bosnia and Herzegovina	4621598	7	0	0
+GEO	Georgia	4600825	23	0	0
+CRI	Costa Rica	4516220	13	0	0
+HRV	Croatia	4486881	15	0	0
+MDA	Moldova	4317483	3	0	0
+NZL	New Zealand	4252277	5	0	0
+IRL	Ireland	4250163	34	0	0
+COG	Congo, Republic of the	4125916	1	0	0
+LBN	Lebanon	4125247	52	1	1
+PRI	Puerto Rico	3977663	0	0	0
+LBR	Liberia	3685076	0	0	0
+ALB	Albania	3659616	10	0	0
+LTU	Lithuania	3545319	3	0	0
+URY	Uruguay	3510386	0	0	0
+PAN	Panama	3410676	8	1	0
+MRT	Mauritania	3205060	0	0	0
+MNG	Mongolia	3086918	1	0	0
+OMN	Oman	2967717	18	0	9
+ARM	Armenia	2966802	1	0	0
+JAM	Jamaica	2847232	1	0	0   
+OSA	Kosovo	2789132  0  0   0 
+PSE	Palestine	2514845	29	0	0    
+LVA	Latvia	2217969	8	0	1    
+NAM	Namibia	2128471	0	0	0   
+MKD	Macedonia	2072086	7	0	0 
+BWA	Botswana	2029307	0	0	0
+SVN	Slovenia	2003136	34	0	0
+LSO	Lesotho	1919552	0	0	0
+GMB	Gambia, The	1824158	0	0	0
+KWT	Kuwait	1815048	72	0	1
+149	Gaza Strip	1604238	0	0	0
+GNB	Guinea-Bissau	1565126	0	0	0
+GAB	Gabon	1545255	0	0	0
+SWZ	Swaziland	1354051	0	0	0
+153	Mauritius	1294104	0	0	0
+EST	Estonia	1291170	13	0	0
+TTO	Trinidad and Tobago	1228691	0	0	0
+TLS	Timor-Leste	1154625	0	0	0
+CYP	Cyprus	1102677	2	0	0
+FJI	Fiji	957780	0	0	0
+QAT	Qatar	840926	24	0	0
+160	Comoros	773407	0	0	0
+GUY	Guyana	748486	5	0	0
+DJI	Djibouti	740528	0	0	0
+163	Bahrain	738004	110	0	30
+BTN	Bhutan	699847	1	0	0
+MNE	Montenegro	666730	0	0	0
+GNQ	Equatorial Guinea	650702	0	0	0
+SLB	Solomon Islands	609794	0	0	0
+168	Macau	567957	10	0	10
+169	Cape Verde	508659	0	0	0
+LUX	Luxembourg	497538	7	0	0
+ESH	Western Sahara	491519	0	0	0
+SUR	Suriname	486618	0	0	0
+173	Malta	406771	5	0	0
+174	Maldives	395650	6	0	0
+BRN	Brunei	395027	6	0	0
+BLZ	Belize	314522	0	0	0
+BHS	Bahamas, The	310426	0	0	0
+ISL	Iceland	308910	81	0	1
+179	French Polynesia	291000	0	0	0
+180	Barbados	285653	0	0	0
+181	Mayotte	231139	0	0	0
+NCL	New Caledonia	229993	0	0	0
+183	Netherlands Antilles	228693	0	0	0
+VUT	Vanuatu	221552	0	0	0
+185	Samoa	192001	0	0	0
+186	Sao Tome and Principe	175808	0	0	0
+187	Saint Lucia	160922	0	0	0
+188	Tonga	122580	0	0	0
+189	Virgin Islands	109775	0	0	0
+190	Grenada	107818	0	0	0
+191	Micronesia, Federated States of	107154	0	0	0
+192	Aruba	104589	0	0	0
+193	Saint Vincent and the Grenadines	104217	0	0	0
+194	Kiribati	99482	0	0	0
+195	Jersey	91812	0	0	0
+196	Seychelles	88340	0	0	0
+197	Antigua and Barbuda	86754	0	0	0
+198	Andorra	84525	1	0	0
+199	Isle of Man	76913	0	0	0
+DOM	Dominica	72813	0	0	0
+201	Bermuda	68268	0	0	0
+202	American Samoa	66432	0	0	0
+203	Marshall Islands	65859	0	0	0
+204	Guernsey	65632	0	0	0
+GRL	Greenland	57637	0	0	0
+206	Cayman Islands	50209	0	0	0
+207	Saint Kitts and Nevis	49898	0	0	0
+208	Faroe Islands	49057	2	0	0
+209	Northern Mariana Islands	48317	0	0	0
+210	Liechtenstein	35002	1	0	0
+211	San Marino	31477	62	2	0
+212	Monaco	30586	1	0	0
+213	Saint Martin	30235	2	0	0
+214	Gibraltar	28877	1	0	1
+215	British Virgin Islands	24939	0	0	0
+216	Turks and Caicos Islands	23528	0	0	0
+217	Palau	20879	0	0	0
+218	Akrotiri	15700	0	0	0
+219	Dhekelia	15700	0	0	0
+220	Wallis and Futuna	15343	0	0	0
+221	Anguilla	14764	0	0	0
+222	Nauru	14264	0	0	0
+223	Cook Islands	11488	0	0	0
+224	Tuvalu	10472	0	0	0
+225	Saint Helena, Ascension, and Tristan da Cunha	7670	0	0	0
+226	Saint Barthelemy	7406	1	0	0
+227	Saint Pierre and Miquelon	6010	0	0	0
+228	Montserrat	5118	0	0	0
+FLK	Falkland Islands (Islas Malvinas)	3140	0	0	0
+230	Norfolk Island	2155	0	0	0
+231	Svalbard	2067	0	0	0
+232	Christmas Island	1402	0	0	0
+233	Tokelau	1400	0	0	0
+234	Niue	1354	0	0	0
+235	Holy See (Vatican City)	829	1	0	0
+236	Cocos (Keeling) Islands	596	0	0	0
+237	Pitcairn Islands	48	0	0	0
+ATA	Antarctica	0	0	0	0
+ATF	French Southern and Antarctic Lands	0	0	0	0
+SDS	South Sudan	12152321	0	0	0
+ABV	Somaliland	3500000	0	0	0
