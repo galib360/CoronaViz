@@ -338,6 +338,13 @@ function ready(error, data, combined) {
             .style("opacity", 0.8)
             .style("stroke","white")
             .style("stroke-width",0.3);
+        })
+        .on("click", function(d) {
+        if(d.properties.name == "Bangladesh"){
+            //console.log("clicked BD");
+            //window.location = "bd.html";
+            window.open('bd.html', '_blank');
+        }
         });
 
   svg.append("path")
