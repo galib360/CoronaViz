@@ -27,6 +27,7 @@ Final = pd.merge(Final, recovered, on="Country")
 
 Final = Final.rename(index={'US': 'United States', 'Bahamas' : 'Bahamas, The', 'Cabo Verde' : 'Cape Verde', 'Congo (Brazzaville)' : 'Congo, Republic of the', 'Congo (Kinshasa)': 'Congo, Democratic Republic of the', 'Czechia' : 'Czech Republic', 'Gambia' : 'Gambia, The', 'Holy See' : 'Holy See (Vatican City)', 'Taiwan*' : 'Taiwan'})
 
+
 coronaData = pd.read_csv('corona_data.tsv',delimiter='\t',encoding='utf-8')
 coronaData.drop('Confirmed', axis=1, inplace=True)
 coronaData.drop('Death', axis=1, inplace=True)
@@ -34,6 +35,11 @@ coronaData.drop('Recovered', axis=1, inplace=True)
 coronaData = coronaData.merge(Final, on="Country", how = 'left')
 
 coronaData = coronaData.fillna(0)
+
+# Greenland
+coronaData.loc[coronaData["Country"] == "Greenland", ["Confirmed"]] = 11
+coronaData.loc[coronaData["Country"] == "Greenland", ["Death"]] = 0
+coronaData.loc[coronaData["Country"] == "Greenland", ["Recovered"]] = 11
 
 coronaData.to_csv('Corona_Final.csv', index = True, header=True)
 

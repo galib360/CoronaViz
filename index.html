@@ -120,6 +120,7 @@ table {
     border-collapse: collapse;
     border: 2px black solid;
     font: 14px sans-serif;
+    width: 90%;
 }
 
 th {
@@ -202,12 +203,26 @@ td {
 
 <body style="background-color: #6baed6;">
     
-<div class="text-center" style="background-color:#deebf7;">
-  <h2>CORONA Virus World Map Visualization</h2>
-  <p><a href="https://github.com/CSSEGISandData/COVID-19">Data Source</a> (data until 26th March, 2020)</p> 
-</div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">CoronaVIZ</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li><a href="index.html">World Map</a></li>
+      <li><a href="bd.html">Bangladesh</a></li>
+      <li><a href="About.html">About</a></li>
+    </ul>
+  </div>
+</nav>
     
-<hr>  
+    
+<div class="text-center" style="background-color:#deebf7;">
+  <h2>COVID-19 World Map Visualization</h2>
+  <p><a href="https://github.com/CSSEGISandData/COVID-19">Data Source</a> (data until 9th April, 2020)</p> 
+</div>
+
     
 <div class="container-fluid">
   <div class="row">
@@ -246,7 +261,7 @@ var color = d3.scaleThreshold()
     .range(["rgb(247,251,255)", "rgb(222,235,247)", "rgb(198,219,239)", "rgb(158,202,225)", "rgb(107,174,214)", "rgb(66,146,198)","rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"]);
 	
 var colorCorona = d3.scaleThreshold()
-    .domain([1, 10, 100, 1000, 5000, 10000, 20000, 60000, 80000, 100000])
+    .domain([1, 10, 100, 1000, 10000, 50000, 100000, 200000, 500000])
     .range(["green", "#ffffcc", "#ffeda0", "#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#bd0026", "#800026" ]);
 
 var path = d3.geoPath();
@@ -536,15 +551,25 @@ d3.json("data/TotalTimeSeries.json", function(error, data) {
 </div>
     
 <div id = "SummaryDiv" class="col-sm-4" style="background-color:#6baed6;">
-<h3>World Wide Summary</h3>
-    <p>* Diamond Princess: Confirmed - 712; Death - 10; Recovered: 597</p>
-    <p>* Some small countries showing green on the map do not have any data </p>
-    <p>* For instance, there is no data on North Korea</p>
+    
+    <div id ="Summary" class = "row">
+        <h2>World Wide Summary</h2>
+        <p>* Diamond Princess: Confirmed - 712; Death - 11; Recovered: 619</p>
+        <p>* MS Zandaam: Confirmed - 9; Death - 2; Recovered: 0</p>
+        <p>* Some countries showing green on the map do not have any data. North Korea has no data available on COVID-19 </p>
+        <p>* So far, only Greenland recovered fully with 11 confirmed cases with no death.</p>
+    </div>
+    
+    <div id ="MostCases" class = "row">
+        <h3>Countries with most number of confirmed cases</h3>
+    </div>
+    
+    
     
  <script type="text/javascript"charset="utf-8">
     
-     var tabulate = function (data,columns) {
-  var table = d3.select('#SummaryDiv').append('table')
+    var tabulate = function (data, columns, whichdiv) {
+    var table = d3.select(whichdiv).append('table')
 	var thead = table.append('thead')
 	var tbody = table.append('tbody')
 
@@ -576,17 +601,16 @@ d3.json("data/TotalTimeSeries.json", function(error, data) {
 
 d3.csv('data/Summary.csv',function (data) {
 	var columns = ['Confirmed','Death','Recovered']
-  tabulate(data,columns)
+  tabulate(data, columns, "#Summary")
 })
      
      
 
 d3.csv('data/MostCases.csv',function (data) {
 	var columns = ['Country', 'Confirmed','Death','Recovered']
-  tabulate(data,columns)
+  tabulate(data, columns, "#MostCases")
 })
 
-document.write("<br>");
 </script> 
     
 
