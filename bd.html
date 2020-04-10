@@ -220,7 +220,8 @@ td {
     
 <div class="text-center" style="background-color:#deebf7;">
   <h2>COVID-19 Bangladesh Map Visualization</h2>
-  <p><a href="https://www.iedcr.gov.bd/">Data Source</a> (data until 9th April, 2020)</p> 
+  <p><a href="https://www.iedcr.gov.bd/">Data Source</a> (data until 10th April, 2020, 12.40PM GMT+6)</p>
+    <p><a href="http://119.40.84.187/surveillance/">Click Here </a>for Further Analysis by IEDCR</p>
 </div>
      
     
@@ -235,6 +236,8 @@ td {
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/queue.v1.min.js"></script>
 <script src="https://d3js.org/topojson.v1.min.js"></script>
+
+
 <script src="d3-tip.js"></script>
 <script>
 var format = d3.format(",");
@@ -249,7 +252,7 @@ var tip = d3.tip()
             .attr('class', 'd3-tip')
             .offset([-10, 0])
             .html(function(d) {
-              return "<strong>District: </strong><span class='details'>" + d.properties.NAME_2 + "<br></span>" + "<strong>Confirmed Cases: </strong><span class='details'>" + format(d.Confirmed);
+              return "<strong>District: </strong><span class='details'>" + d.name + "<br></span>" + "<strong>Confirmed Cases: </strong><span class='details'>" + format(d.Confirmed);
             })
 
 var margin = {top: 200, right: 0, bottom: 0, left: 200},
@@ -293,10 +296,14 @@ function ready(error, data, combined) {
   var confirmedById = {};
   var deathById = {};
   var recoveredById = {};
+  var nameById = {};
   
-  combined.forEach(function(d) { confirmedById[d.id] = +d.Confirmed; deathById[d.id] = +d.Death; recoveredById[d.id] = +d.Recovered });
-  data.features.forEach(function(d) { d.Confirmed = confirmedById[d.id]; d.Death = deathById[d.id]; d.Recovered = recoveredById[d.id] });
+  console.log(combined);
+  console.log(data);
+  combined.forEach(function(d) { confirmedById[d.id] = +d.Confirmed; deathById[d.id] = +d.Death; recoveredById[d.id] = +d.Recovered; nameById[d.id] = d.Country });
+  data.features.forEach(function(d) { d.Confirmed = confirmedById[d.id]; d.Death = deathById[d.id]; d.Recovered = recoveredById[d.id]; d.name = nameById[d.id] });
   
+  //console.log(data);
   console.log("Cases: " + totalCase);
   console.log("Deaths: " + totalDeath);
   console.log("Recovered: " + totalRecovered);
@@ -356,9 +363,7 @@ function ready(error, data, combined) {
     <div id ="DhakaAreas" class = "row">
         <h3>Areas in Dhaka with number of cases</h3>
     </div>
-
-    
- <script type="text/javascript"charset="utf-8">
+<script type="text/javascript" charset="utf-8">
     
     var tabulateSummary = function (data,columns) {
     
@@ -436,6 +441,7 @@ d3.csv('data/DhakaAreas.csv',function (data) {
 })
 
 </script> 
+
     
 
         
@@ -451,4 +457,5 @@ d3.csv('data/DhakaAreas.csv',function (data) {
     
 
 </body>
+    
 </html>
